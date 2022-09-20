@@ -11,3 +11,7 @@
     width: 200px;
     border: solid black 1px;
 }
+
+h1 {
+    margin: auto;
+}
