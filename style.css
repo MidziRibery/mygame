@@ -1,3 +1,16 @@
+body {
+    background-image: url(images/background.jpg);
+    background-size: cover;
+}
+
+h1 {
+    margin-bottom: 30px, 0, 0, 0;
+}
+
+h1,h2 {
+    text-align: center;    
+}
+
 .grid{
     height: 606px;
     width: 606px;
@@ -12,6 +25,12 @@
     border: solid black 1px;
 }
 
-h1 {
-    text-align: center;    
+.mole {
+    background-image: url(images/Moley.jpg);
+    background-size: cover;
+}
+
+.mole2 {
+    background-image: url(images/moley2.jpg);
+    background-size: cover;
 }
