@@ -11,6 +11,22 @@ h1,h2 {
     text-align: center;    
 }
 
+.top{
+    height: 200px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;    
+    margin: auto;
+}
+
+.top-child{
+    height: 200px;
+    width: 100px;
+    /* border: solid black 1px; */
+    flex-wrap: wrap;
+    margin: auto;
+}
+
 .grid{
     height: 606px;
     width: 606px;
@@ -25,7 +41,7 @@ h1,h2 {
     border: solid black 1px;
 }
 
-.mole {
+.mole1 {
     background-image: url(images/Moley.jpg);
     background-size: cover;
 }
