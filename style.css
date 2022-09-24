@@ -12,15 +12,15 @@ h1,h2 {
 }
 
 .top{
-    height: 200px;
-    width: 400px;
+    height: 100px;
+    width: 500px;
     display: flex;
     flex-wrap: wrap;    
     margin: auto;
 }
 
 .top-child{
-    height: 200px;
+    height: 10px;
     width: 100px;
     /* border: solid black 1px; */
     flex-wrap: wrap;
@@ -49,4 +49,8 @@ h1,h2 {
 .mole2 {
     background-image: url(images/moley2.jpg);
     background-size: cover;
+}
+
+#btn-start{
+    margin: auto;
 }
