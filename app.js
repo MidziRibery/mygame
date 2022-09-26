@@ -4,33 +4,55 @@ const squares = document.querySelectorAll('.square'); //select all the squares s
 const timeLeft = document.querySelector('#timeleft');
 const score = document.querySelector('#score');
 const start = document.querySelector('#btn-start');
-var x = document.getElementById("myDIV");
-x.style.display = "none";
+const next = document.getElementById("btn-next");
+const restart = document.getElementById("btn-restart");
+
 
 let result = 0;
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
-let currentTime = 20 // change here for timer speed.
+let currentTime = 5 // change here for timer speed.
 let timerId1 = null;
 let timerId2 = null;
 let timerId3 = null;
 let countDownTimerId = null;
-
-function myFunction() {
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+next.style.display = "none";
+restart.style.display = "none";
 
 /***********
- * Start
+ * Sequence of Events
+ **********/
+const seqOfEv = () => {
+    hideStart();
+    startTimer();
+    moveMole1();
+    mouseClick1();
+    moveMole2();
+    mouseClick2();
+    moveMole3();
+    mouseClick3();
+}
+
+
+/***********
+ * Start button
  **********/
 const startNow = () => {
     start.addEventListener('click', () => {
         console.log('start pressed')
+        seqOfEv();
+    })
+}
+
+startNow();
+
+/***********
+ * Restart button
+ **********/
+ const restartNow = () => {
+    restart.addEventListener('click', () => {
+        console.log('restart pressed')
         startTimer();
         moveMole1();
         mouseClick1();
@@ -41,7 +63,41 @@ const startNow = () => {
     })
 }
 
-startNow();
+
+
+/***********
+ * Hide start button
+ **********/
+ const hideStart = () => {
+    if (start.style.display === "none") {
+      start.style.display = "block";
+    } else {
+      start.style.display = "none";
+    }
+  }
+
+/***********
+ * Next button
+ **********/
+const nextGame = () => {
+    if (next.style.display === "none") {
+      next.style.display = "block";
+    } else {
+      next.style.display = "none";
+    }
+  }
+
+/***********
+ * Restart button
+ **********/
+ const restartGame = () => {
+    if (restart.style.display === "none") {
+        restart.style.display = "block";
+    } else {
+        restart.style.display = "none";
+    }
+    restartNow();
+  };
 
 /***********
  * Correct number //once click, alert 'correct!' timer stops, unhide next button
@@ -66,7 +122,7 @@ squares.forEach(square => {
             console.log('button 1')
             result++;
             score.textContent = result;
-            myFunction()
+            nextGame()
             clearInterval(countDownTimerId);
             clearInterval(timerId1);
             clearInterval(timerId2);
@@ -155,6 +211,10 @@ const moveMole3 = () => {  //later we add button to start.
 // moveMole2();
 // mouseClick2();
 
+/***********
+ * Clear Grid
+ **********/
+
 const cleanSlate1 = () => {
     squares.forEach(square => {
         square.classList.remove('num1')  //clean slate
@@ -188,9 +248,11 @@ const countDown = () => {
         clearInterval(timerId2);
         clearInterval(timerId3);    
         alert('Game Over! Don\'t give up! Click restart to try again!');
+        restartGame();
         cleanSlate1();
         cleanSlate2();
         cleanSlate3();     
+        //to unhide a restart button and hide start
     }
 }
 
