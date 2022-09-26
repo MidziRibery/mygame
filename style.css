@@ -4,11 +4,27 @@ body {
 }
 
 h1 {
-    margin-bottom: 30px, 0, 0, 0;
+    margin: 30px, 0, 0, 0;
+}
+
+h2 {
+    color: red;
 }
 
 h1,h2 {
     text-align: center;    
+}
+
+h3{
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: larger;
+}
+
+.logo {
+    background-image: url(images/WATERWAIVER.png);
+    background-size: cover;
 }
 
 .top{
@@ -22,14 +38,18 @@ h1,h2 {
 .top-child{
     height: 10px;
     width: 100px;
+    background-color: brown;
     /* border: solid black 1px; */
+    position: relative;
+    /* left: 50px; */
     flex-wrap: wrap;
     margin: auto;
 }
 
 .grid{
-    height: 606px;
-    width: 606px;
+    height: 630px;
+    width: 630px;
+    border: solid black;
     display: flex;
     flex-wrap: wrap;
     margin: auto;
@@ -38,19 +58,35 @@ h1,h2 {
 .square {
     height: 200px;
     width: 200px;
-    border: solid black 1px;
+    border: solid black 5px;
 }
 
-.mole1 {
-    background-image: url(images/Moley.jpg);
+.num1 {
+    background-image: url(images/10.png);
     background-size: cover;
 }
 
-.mole2 {
-    background-image: url(images/moley2.jpg);
+.num2 {
+    background-image: url(images/1.png);
+    background-size:cover;
+}
+
+.num3 {
+    background-image: url(images/5.png);
     background-size: cover;
 }
 
 #btn-start{
     margin: auto;
 }
+
+/* <style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('/w3images/forestbridge.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+</style> */
