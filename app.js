@@ -12,7 +12,7 @@ let result = 0;
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
-let currentTime = 5 // change here for timer speed.
+let currentTime = 13 // change here for timer speed.
 let timerId1 = null;
 let timerId2 = null;
 let timerId3 = null;
