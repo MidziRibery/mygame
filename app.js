@@ -1,14 +1,18 @@
-
-
 const squares = document.querySelectorAll('.square'); //select all the squares so can manipulate
 const timeLeft = document.querySelector('#timeleft');
 const score = document.querySelector('#score');
 const start = document.querySelector('#btn-start');
 const next = document.getElementById("btn-next");
 const restart = document.getElementById("btn-restart");
+const input1Num = document.getElementById("input1");
+const input2Num = document.getElementById("input2");
 
-
+let input1;
+let input2;
+let answer;
 let result = 0;
+let randomWrongNumbers = Math.floor(Math.random() * 10);
+let randomWrongNumbers1 = Math.floor(Math.random() * 10);
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
@@ -30,8 +34,8 @@ const seqOfEv = () => {
     mouseClick1();
     moveMole2();
     mouseClick2();
-    moveMole3();
-    mouseClick3();
+    // moveMole3();
+    // mouseClick3();
 }
 
 
@@ -46,6 +50,22 @@ const startNow = () => {
 }
 
 startNow();
+
+/***********
+ * Next button
+ **********/
+const nextGame = () => {
+    next.addEventListener('click', () => {
+        console.log('next clicked');
+        generateQuestion();
+        hideStart();
+        nextGameBtn();
+        seqOfEv();
+    })
+}
+
+nextGame();
+
 
 /***********
  * Restart button
@@ -63,6 +83,33 @@ startNow();
     })
 }
 
+/***********
+ * Generate random question
+ **********/
+const generateQuestion = () =>{
+    input1 = Math.ceil(Math.random() * 5);
+    input1Num.textContent = input1;
+    input2 = Math.floor(Math.random() * 6);
+    input2Num.textContent = input2;
+    answer = input1 + input2
+    console.log(answer);
+}
+generateQuestion();
+
+/***********
+ * Generate random numbers
+ **********/
+    const numbersClass = [
+        'num1',
+        'num2',
+        'num3',
+        'num4',
+        'num5',
+        'num6',
+        'num7',
+        'num8',
+        'num9',
+    ]
 
 
 /***********
@@ -77,9 +124,9 @@ startNow();
   }
 
 /***********
- * Next button
+ * Next button appearance
  **********/
-const nextGame = () => {
+const nextGameBtn = () => {
     if (next.style.display === "none") {
       next.style.display = "block";
     } else {
@@ -88,7 +135,7 @@ const nextGame = () => {
   }
 
 /***********
- * Restart button
+ * Restart button appearance
  **********/
  const restartGame = () => {
     if (restart.style.display === "none") {
@@ -105,11 +152,12 @@ const nextGame = () => {
 
 const randomSquare1 = () => {
     squares.forEach(square => {
-        square.classList.remove('num1') //clean slate
+        square.classList.remove(numbersClass[answer-1]) //clean slate
     })
 
-    let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    randomSquare1.classList.add('num1'); //add class of mole to a random square
+    let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid  
+    randomSquare1.classList.add(numbersClass[answer-1]); //add class of mole to a random square
+  
 
     hitPosition1 = randomSquare1.id; //to assign id to the mole that appears
 }
@@ -117,12 +165,12 @@ const mouseClick1 = () =>{
 squares.forEach(square => {
     square.addEventListener('mousedown', () => {
         if (square.id == hitPosition1) {
-            alert('You are awesome! 5 + 5 = 10!');
+            alert('You are awesome!');
             alert('Click Next Level!');
             console.log('button 1')
             result++;
             score.textContent = result;
-            nextGame()
+            nextGameBtn()
             clearInterval(countDownTimerId);
             clearInterval(timerId1);
             clearInterval(timerId2);
@@ -136,7 +184,7 @@ squares.forEach(square => {
 }
 
 const moveMole1 = () => {  //later we add button to start.
-    timerId1 = setInterval(randomSquare1, 1000); //move the mole randomly at an interval
+    timerId1 = setInterval(randomSquare1, 1500); //move the mole randomly at an interval
 }
 
 
@@ -146,13 +194,14 @@ const moveMole1 = () => {  //later we add button to start.
  **********/
 
 const randomSquare2 = () => {
-    squares.forEach(square => {
-        square.classList.remove('num2') //clean slate
+
+    squares.forEach(square => { //must be specific here, because randomWrong numbers below is diff from here.
+        square.classList.remove(numbersClass[randomWrongNumbers]) //clean slate each cycle
     })
 
     let randomSquare2 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    randomSquare2.classList.add('num2'); //add class of mole to a random square
-
+    randomSquare2.classList.add(numbersClass[randomWrongNumbers]); //add class of mole to a random square
+    
     hitPosition2 = randomSquare2.id;
 }
 
@@ -162,15 +211,15 @@ const mouseClick2 = () =>{
             if (square.id == hitPosition2) {
                 alert('Oops Try Again!');
                 console.log('button 2')
-                result++;
-                score.textContent = result;
+                // result++;
+                // score.textContent = result;
             }
         })
     })
     }
 
 const moveMole2 = () => {  //later we add button to start.
-    timerId2 = setInterval(randomSquare2, 1050); //move the mole randomly at an interval
+    timerId2 = setInterval(randomSquare2, 1550); //move the mole randomly at an interval
 }
 
 // moveMole2();
@@ -182,11 +231,11 @@ const moveMole2 = () => {  //later we add button to start.
 
  const randomSquare3 = () => {
     squares.forEach(square => {
-        square.classList.remove('num3') //clean slate
+        square.classList.remove(numbersClass[randomWrongNumbers1]) //clean slate
     })
 
     let randomSquare3 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    randomSquare3.classList.add('num3'); //add class of mole to a random square
+    randomSquare3.classList.add(numbersClass[randomWrongNumbers1]); //add class of mole to a random square
 
     hitPosition3 = randomSquare3.id;
 }

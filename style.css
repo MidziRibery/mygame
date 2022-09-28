@@ -10,6 +10,7 @@ body {
 
 h1 {
     margin: 30px, 0, 0, 0;
+    color:purple;
 }
 
 h2 {
@@ -78,17 +79,47 @@ h3{
 }
 
 .num1 {
-    background-image: url(images/10.png);
+    background-image: url(images/num1.jpg);
     background-size: cover;
 }
 
 .num2 {
-    background-image: url(images/1.png);
+    background-image: url(images/num2.jpg);
     background-size:cover;
 }
 
 .num3 {
-    background-image: url(images/5.png);
+    background-image: url(images/num3.jpg);
+    background-size: cover;
+}
+
+.num4 {
+    background-image: url(images/num4.jpg);
+    background-size: cover;
+}
+
+.num5 {
+    background-image: url(images/num5.jpg);
+    background-size:cover;
+}
+
+.num6 {
+    background-image: url(images/num6.jpg);
+    background-size: cover;
+}
+
+.num7 {
+    background-image: url(images/num7.jpg);
+    background-size: cover;
+}
+
+.num8 {
+    background-image: url(images/num8.jpg);
+    background-size:cover;
+}
+
+.num9 {
+    background-image: url(images/num9.jpg);
     background-size: cover;
 }
 
@@ -130,8 +161,20 @@ h3{
 
 #btn-next{
     margin: auto;
-    
     /* position: absolute; */
+    width: 100px;
+    height: 30px;
+    border: none;
+    color: white;
+    background-color: red;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 0 #f9e506;
+    transition: ease-out 0.3s;
+    font-size: 1rem;
+}
+
+#btn-next:hover {
+    box-shadow: inset 100px 0 0 0 #f9e506;;
 }
 
 #btn-restart{
