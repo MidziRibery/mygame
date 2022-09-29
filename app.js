@@ -16,13 +16,23 @@ let randomWrongNumbers1 = Math.floor(Math.random() * 10);
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
-let currentTime = 13 // change here for timer speed.
+let currentTime = 30 // change here for timer speed.
 let timerId1 = null;
 let timerId2 = null;
 let timerId3 = null;
 let countDownTimerId = null;
 next.style.display = "none";
 restart.style.display = "none";
+
+console.log('Answer is:' + answer);
+console.log('Wrong random number 1:' + randomWrongNumbers);//so how to check if randomw numbers === answer, rerun randon
+console.log('Wrong random number 2:' + randomWrongNumbers1);
+
+const reRun = () =>{
+    if(randomWrongNumbers === answer){
+        //rerun the randomWrongNumbers
+    }
+}
 
 /***********
  * Sequence of Events
@@ -34,8 +44,8 @@ const seqOfEv = () => {
     mouseClick1();
     moveMole2();
     mouseClick2();
-    // moveMole3();
-    // mouseClick3();
+    moveMole3();
+    mouseClick3();
 }
 
 
@@ -60,7 +70,13 @@ const nextGame = () => {
         generateQuestion();
         hideStart();
         nextGameBtn();
-        seqOfEv();
+        // moveMole1();
+        // mouseClick1();
+        // moveMole2();
+        // mouseClick2();
+        // moveMole3();
+        // mouseClick3();
+       
     })
 }
 
@@ -152,12 +168,15 @@ const nextGameBtn = () => {
 
 const randomSquare1 = () => {
     squares.forEach(square => {
-        square.classList.remove(numbersClass[answer-1]) //clean slate
+        square.classList.remove(numbersClass[answer-1]); //clean slate
+        // square.classList.remove(numbersClass[randomWrongNumbers1]);
+        // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
     let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid  
     randomSquare1.classList.add(numbersClass[answer-1]); //add class of mole to a random square
-  
+    randomSquare1.classList.remove(numbersClass[randomWrongNumbers1]);
+    randomSquare1.classList.remove(numbersClass[randomWrongNumbers]);
 
     hitPosition1 = randomSquare1.id; //to assign id to the mole that appears
 }
@@ -166,7 +185,7 @@ squares.forEach(square => {
     square.addEventListener('mousedown', () => {
         if (square.id == hitPosition1) {
             alert('You are awesome!');
-            alert('Click Next Level!');
+            // alert('Click Next Level!');
             console.log('button 1')
             result++;
             score.textContent = result;
@@ -184,7 +203,7 @@ squares.forEach(square => {
 }
 
 const moveMole1 = () => {  //later we add button to start.
-    timerId1 = setInterval(randomSquare1, 1500); //move the mole randomly at an interval
+    timerId1 = setInterval(randomSquare1, 1300); //move the mole randomly at an interval
 }
 
 
@@ -197,11 +216,13 @@ const randomSquare2 = () => {
 
     squares.forEach(square => { //must be specific here, because randomWrong numbers below is diff from here.
         square.classList.remove(numbersClass[randomWrongNumbers]) //clean slate each cycle
+        // square.classList.remove(numbersClass[answer-1]);
+        // square.classList.remove(numbersClass[randomWrongNumbers1]); 
     })
 
     let randomSquare2 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
     randomSquare2.classList.add(numbersClass[randomWrongNumbers]); //add class of mole to a random square
-    
+    randomSquare2.classList.remove(numbersClass[randomWrongNumbers1])
     hitPosition2 = randomSquare2.id;
 }
 
@@ -219,7 +240,7 @@ const mouseClick2 = () =>{
     }
 
 const moveMole2 = () => {  //later we add button to start.
-    timerId2 = setInterval(randomSquare2, 1550); //move the mole randomly at an interval
+    timerId2 = setInterval(randomSquare2, 950); //move the mole randomly at an interval
 }
 
 // moveMole2();
@@ -232,11 +253,13 @@ const moveMole2 = () => {  //later we add button to start.
  const randomSquare3 = () => {
     squares.forEach(square => {
         square.classList.remove(numbersClass[randomWrongNumbers1]) //clean slate
+        // square.classList.remove(numbersClass[answer-1);
+        // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
     let randomSquare3 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
     randomSquare3.classList.add(numbersClass[randomWrongNumbers1]); //add class of mole to a random square
-
+    randomSquare3.classList.remove(numbersClass[randomWrongNumbers])
     hitPosition3 = randomSquare3.id;
 }
 
@@ -254,7 +277,7 @@ const mouseClick3 = () =>{// should be inside some function
     }
 
 const moveMole3 = () => {  //later we add button to start.
-    timerId3 = setInterval(randomSquare3, 1500); //move the mole randomly at an interval
+    timerId3 = setInterval(randomSquare3, 970); //move the mole randomly at an interval
 }
 
 // moveMole2();
@@ -266,19 +289,19 @@ const moveMole3 = () => {  //later we add button to start.
 
 const cleanSlate1 = () => {
     squares.forEach(square => {
-        square.classList.remove('num1')  //clean slate
+        square.classList.remove(numbersClass[answer-1])  //clean slate
     })
 }
 
 const cleanSlate2 = () => {
     squares.forEach(square => {
-        square.classList.remove('num2')  //clean slate
+        square.classList.remove(numbersClass[randomWrongNumbers])  //clean slate
     })
 }
 
 const cleanSlate3 = () => {
     squares.forEach(square => {
-        square.classList.remove('num3')  //clean slate
+        square.classList.remove(numbersClass[randomWrongNumbers1])  //clean slate
     })
 }
 
