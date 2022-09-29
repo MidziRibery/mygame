@@ -31,8 +31,8 @@ console.log('Wrong random number 2:' + randomWrongNumbers1);
 const reRun = () =>{
     randomWrongNumbers = Math.floor(Math.random() * 10);
     randomWrongNumbers1 = Math.floor(Math.random() * 10);
-    console.log('Wrong random number 1:' + randomWrongNumbers);
-    console.log('Wrong random number 2:' + randomWrongNumbers1);
+    console.log('Wrong random number 1:' + randomWrongNumbers + 1);
+    console.log('Wrong random number 2:' + randomWrongNumbers1 + 1);
 }
 
 /***********

@@ -29,6 +29,10 @@ h3{
     position: relative;
 }
 
+.title{
+    margin-left: auto;
+}
+
 .lets-play-btn{
     margin: auto;
     position: relative;
