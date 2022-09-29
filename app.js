@@ -37,29 +37,6 @@ const refreshInput = () =>{
 }
 
 /***********
- * Reset to new set of random numbers
- **********/
- const reRun = () =>{
-    randomWrongNumbers = Math.floor(Math.random() * 10);
-    randomWrongNumbers1 = Math.floor(Math.random() * 10);
-    checker();
-    console.log('Wrong random number 1:' + randomWrongNumbers);
-    console.log('Wrong random number 2:' + randomWrongNumbers1);
-}
-
-/***********
- * Check if answer is same as random wrong numbers(1)
- **********/
-const checker = () => {
-    if(answer === randomWrongNumbers || answer === randomWrongNumbers1){
-        reRun();
-    }else if(randomWrongNumbers === randomWrongNumbers1){
-        reRun();
-    }
-}
-checker();
-
-/***********
  * Generate random question
  **********/
  const generateQuestion = () =>{
@@ -71,6 +48,28 @@ checker();
     console.log(answer);
 }
 generateQuestion();
+
+/***********
+ * Reset to new set of random numbers
+ **********/
+ const reRun = () =>{
+    randomWrongNumbers = Math.floor(Math.random() * 10);
+    randomWrongNumbers1 = Math.floor(Math.random() * 10);
+    checker();
+    console.log('Rerun Answer is:' + answer);
+    console.log('Rerun Wrong random number 1:' + randomWrongNumbers);
+    console.log('Rerun Wrong random number 2:' + randomWrongNumbers1);
+}
+
+/***********
+ * Check if answer is same as random wrong numbers(1)
+ **********/
+ const checker = () => {
+    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
+    reRun();
+    }
+}
+checker();
 
 /***********
  * Sequence of Events
@@ -105,10 +104,10 @@ startNow();
  **********/
 const nextGame = () => {
     next.addEventListener('click', () => {
+        checker();
         reRun();
         console.log('next clicked');
         refreshInput();
-        checker();
         generateQuestion();
         nextGameBtn()
         startTimer();
