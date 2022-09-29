@@ -45,7 +45,10 @@ const refreshInput = () =>{
     // input2 = Math.floor(Math.random() * 6);
     input2Num.textContent = input2;
     answer = input1 + input2
-    console.log(answer);
+    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
+        reRun();
+        }
+    console.log(`Generate question answer is ${answer}`);
 }
 generateQuestion();
 
@@ -56,7 +59,7 @@ generateQuestion();
     randomWrongNumbers = Math.floor(Math.random() * 10);
     randomWrongNumbers1 = Math.floor(Math.random() * 10);
     checker();
-    console.log('Rerun Answer is:' + answer);
+    console.log('Rerun Answer is:' + answer); // how to get this same as line 48????????
     console.log('Rerun Wrong random number 1:' + randomWrongNumbers);
     console.log('Rerun Wrong random number 2:' + randomWrongNumbers1);
 }
