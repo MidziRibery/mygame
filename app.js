@@ -11,8 +11,8 @@ let input1;
 let input2;
 let answer;
 let result = 0;
-let randomWrongNumbers = Math.floor(Math.random() * 10);
-let randomWrongNumbers1 = Math.floor(Math.random() * 10);
+let randomWrongNumbers = Math.floor(Math.random() * 10) + 1;
+let randomWrongNumbers1 = Math.floor(Math.random() * 10)+ 1;
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
@@ -31,8 +31,8 @@ console.log('Wrong random number 2:' + randomWrongNumbers1);
 const reRun = () =>{
     randomWrongNumbers = Math.floor(Math.random() * 10);
     randomWrongNumbers1 = Math.floor(Math.random() * 10);
-    console.log('Wrong random number 1:' + randomWrongNumbers + 1);
-    console.log('Wrong random number 2:' + randomWrongNumbers1 + 1);
+    console.log('Wrong random number 1:' + randomWrongNumbers);
+    console.log('Wrong random number 2:' + randomWrongNumbers1);
 }
 
 /***********
@@ -112,6 +112,7 @@ generateQuestion();
  * Generate random numbers
  **********/
     const numbersClass = [
+        'num0',
         'num1',
         'num2',
         'num3',
@@ -121,7 +122,8 @@ generateQuestion();
         'num7',
         'num8',
         'num9',
-    ]
+        'num10'
+    ];
 
 
 /***********
@@ -164,14 +166,14 @@ const nextGameBtn = () => {
 
 const randomSquare1 = () => {
     squares.forEach(square => {
-        square.classList.remove(numbersClass[answer-1]); //clean slate
+        square.classList.remove(numbersClass[answer]); //clean slate
         // square.classList.remove(numbersClass[randomWrongNumbers1]);
         // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
     let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
     console.log(`Correct number will a`)  
-    randomSquare1.classList.add(numbersClass[answer-1]); //add class of answer to a random square
+    randomSquare1.classList.add(numbersClass[answer]); //add class of answer to a random square
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers1]);
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers]);
 
@@ -286,7 +288,7 @@ const moveMole3 = () => {  //later we add button to start.
 
 const cleanSlate1 = () => {
     squares.forEach(square => {
-        square.classList.remove(numbersClass[answer-1])  //clean slate
+        square.classList.remove(numbersClass[answer])  //clean slate
     })
 }
 

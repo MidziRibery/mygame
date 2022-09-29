@@ -82,6 +82,11 @@ h3{
     border: solid black 5px;
 }
 
+.num0 {
+    background-image: url(images/num0.jpg);
+    background-size: cover;
+}
+
 .num1 {
     background-image: url(images/num1.jpg);
     background-size: cover;
@@ -124,6 +129,11 @@ h3{
 
 .num9 {
     background-image: url(images/num9.jpg);
+    background-size: cover;
+}
+
+.num10 {
+    background-image: url(images/num10.jpg);
     background-size: cover;
 }
 
