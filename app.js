@@ -53,8 +53,7 @@ const refreshInput = () =>{
 const checker = () => {
     if(answer === randomWrongNumbers || answer === randomWrongNumbers1){
         reRun();
-    }
-    if(randomWrongNumbers === randomWrongNumbers1){
+    }else if(randomWrongNumbers === randomWrongNumbers1){
         reRun();
     }
 }
@@ -109,6 +108,7 @@ const nextGame = () => {
         reRun();
         console.log('next clicked');
         refreshInput();
+        checker();
         generateQuestion();
         nextGameBtn()
         startTimer();
@@ -344,11 +344,15 @@ const countDown = () => {
         clearInterval(timerId1);
         clearInterval(timerId2);
         clearInterval(timerId3);    
-        alert('Game Over! Your score is ${score} Click restart to try again!');
         restartGame();
         cleanSlate1();
         cleanSlate2();
-        cleanSlate3();     
+        cleanSlate3();
+        if (result == 0){
+            alert(`Game Over! You can do it! Click restart to try again!`);
+        }else{
+            alert(`Good job! Your score is ${result}! Let's aim for a better score!`);
+        }     
         //to unhide a restart button and hide start
     }
 }
