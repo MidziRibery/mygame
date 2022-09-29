@@ -29,9 +29,10 @@ console.log('Wrong random number 1:' + randomWrongNumbers);//so how to check if 
 console.log('Wrong random number 2:' + randomWrongNumbers1);
 
 const reRun = () =>{
-    if(randomWrongNumbers === answer){
-        //rerun the randomWrongNumbers
-    }
+    randomWrongNumbers = Math.floor(Math.random() * 10);
+    randomWrongNumbers1 = Math.floor(Math.random() * 10);
+    console.log('Wrong random number 1:' + randomWrongNumbers);
+    console.log('Wrong random number 2:' + randomWrongNumbers1);
 }
 
 /***********
@@ -66,16 +67,17 @@ startNow();
  **********/
 const nextGame = () => {
     next.addEventListener('click', () => {
+        reRun();
         console.log('next clicked');
         generateQuestion();
-        hideStart();
-        nextGameBtn();
-        // moveMole1();
-        // mouseClick1();
-        // moveMole2();
-        // mouseClick2();
-        // moveMole3();
-        // mouseClick3();
+        nextGameBtn()
+        startTimer();
+        moveMole1();
+        mouseClick1();
+        moveMole2();
+        mouseClick2();
+        moveMole3();
+        mouseClick3();
        
     })
 }
@@ -89,13 +91,7 @@ nextGame();
  const restartNow = () => {
     restart.addEventListener('click', () => {
         console.log('restart pressed')
-        startTimer();
-        moveMole1();
-        mouseClick1();
-        moveMole2();
-        mouseClick2();
-        moveMole3();
-        mouseClick3();
+        document.location.reload();
     })
 }
 
@@ -173,8 +169,9 @@ const randomSquare1 = () => {
         // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
-    let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid  
-    randomSquare1.classList.add(numbersClass[answer-1]); //add class of mole to a random square
+    let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
+    console.log(`Correct number will a`)  
+    randomSquare1.classList.add(numbersClass[answer-1]); //add class of answer to a random square
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers1]);
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers]);
 
@@ -269,8 +266,8 @@ const mouseClick3 = () =>{// should be inside some function
             if (square.id == hitPosition3) {
                 alert('Oops Try Again! Don\'t give up!');
                 console.log('button 3')
-                result++;
-                score.textContent = result;
+                // result++;
+                // score.textContent = result;
             }
         })
     })
