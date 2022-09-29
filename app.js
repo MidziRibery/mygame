@@ -7,12 +7,12 @@ const restart = document.getElementById("btn-restart");
 const input1Num = document.getElementById("input1");
 const input2Num = document.getElementById("input2");
 
-let input1;
-let input2;
-let answer;
+let input1 = Math.ceil(Math.random() * 5);
+let input2 = Math.floor(Math.random() * 6);
+let answer = input1 + input2;
 let result = 0;
-let randomWrongNumbers = Math.floor(Math.random() * 10) + 1;
-let randomWrongNumbers1 = Math.floor(Math.random() * 10)+ 1;
+let randomWrongNumbers = Math.floor(Math.random() * 10);
+let randomWrongNumbers1 = Math.floor(Math.random() * 10);
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
@@ -28,12 +28,50 @@ console.log('Answer is:' + answer);
 console.log('Wrong random number 1:' + randomWrongNumbers);//so how to check if randomw numbers === answer, rerun randon
 console.log('Wrong random number 2:' + randomWrongNumbers1);
 
-const reRun = () =>{
+/***********
+ * Refresh input and answer
+ **********/
+const refreshInput = () =>{
+    input1 = Math.ceil(Math.random() * 5);
+    input2 = Math.floor(Math.random() * 6);
+}
+
+/***********
+ * Reset to new set of random numbers
+ **********/
+ const reRun = () =>{
     randomWrongNumbers = Math.floor(Math.random() * 10);
     randomWrongNumbers1 = Math.floor(Math.random() * 10);
+    checker();
     console.log('Wrong random number 1:' + randomWrongNumbers);
     console.log('Wrong random number 2:' + randomWrongNumbers1);
 }
+
+/***********
+ * Check if answer is same as random wrong numbers(1)
+ **********/
+const checker = () => {
+    if(answer === randomWrongNumbers || answer === randomWrongNumbers1){
+        reRun();
+    }
+    if(randomWrongNumbers === randomWrongNumbers1){
+        reRun();
+    }
+}
+checker();
+
+/***********
+ * Generate random question
+ **********/
+ const generateQuestion = () =>{
+    // input1 = Math.ceil(Math.random() * 5);
+    input1Num.textContent = input1;
+    // input2 = Math.floor(Math.random() * 6);
+    input2Num.textContent = input2;
+    answer = input1 + input2
+    console.log(answer);
+}
+generateQuestion();
 
 /***********
  * Sequence of Events
@@ -47,6 +85,7 @@ const seqOfEv = () => {
     mouseClick2();
     moveMole3();
     mouseClick3();
+    nextGame();
 }
 
 
@@ -69,20 +108,20 @@ const nextGame = () => {
     next.addEventListener('click', () => {
         reRun();
         console.log('next clicked');
+        refreshInput();
         generateQuestion();
         nextGameBtn()
         startTimer();
         moveMole1();
-        mouseClick1();
+        // mouseClick1();
         moveMole2();
-        mouseClick2();
+        // mouseClick2();
         moveMole3();
-        mouseClick3();
+        // mouseClick3();
        
     })
 }
 
-nextGame();
 
 
 /***********
@@ -95,18 +134,6 @@ nextGame();
     })
 }
 
-/***********
- * Generate random question
- **********/
-const generateQuestion = () =>{
-    input1 = Math.ceil(Math.random() * 5);
-    input1Num.textContent = input1;
-    input2 = Math.floor(Math.random() * 6);
-    input2Num.textContent = input2;
-    answer = input1 + input2
-    console.log(answer);
-}
-generateQuestion();
 
 /***********
  * Generate random numbers
@@ -172,7 +199,6 @@ const randomSquare1 = () => {
     })
 
     let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    console.log(`Correct number will a`)  
     randomSquare1.classList.add(numbersClass[answer]); //add class of answer to a random square
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers1]);
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers]);
@@ -318,7 +344,7 @@ const countDown = () => {
         clearInterval(timerId1);
         clearInterval(timerId2);
         clearInterval(timerId3);    
-        alert('Game Over! Don\'t give up! Click restart to try again!');
+        alert('Game Over! Your score is ${score} Click restart to try again!');
         restartGame();
         cleanSlate1();
         cleanSlate2();
