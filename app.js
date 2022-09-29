@@ -45,9 +45,6 @@ const refreshInput = () =>{
     // input2 = Math.floor(Math.random() * 6);
     input2Num.textContent = input2;
     answer = input1 + input2
-    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
-        reRun();
-        }
     console.log(`Generate question answer is ${answer}`);
 }
 generateQuestion();
@@ -249,7 +246,9 @@ const randomSquare2 = () => {
 
     let randomSquare2 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
     randomSquare2.classList.add(numbersClass[randomWrongNumbers]); //add class of mole to a random square
-    randomSquare2.classList.remove(numbersClass[randomWrongNumbers1])
+    randomSquare2.classList.remove(numbersClass[randomWrongNumbers1]);
+    randomSquare2.classList.remove(numbersClass[answer]);
+
     hitPosition2 = randomSquare2.id;
 }
 
@@ -286,7 +285,9 @@ const moveMole2 = () => {  //later we add button to start.
 
     let randomSquare3 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
     randomSquare3.classList.add(numbersClass[randomWrongNumbers1]); //add class of mole to a random square
-    randomSquare3.classList.remove(numbersClass[randomWrongNumbers])
+    randomSquare3.classList.remove(numbersClass[randomWrongNumbers]);
+    randomSquare3.classList.remove(numbersClass[answer]);
+
     hitPosition3 = randomSquare3.id;
 }
 

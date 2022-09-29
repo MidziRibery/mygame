@@ -83,61 +83,73 @@ h3{
 }
 
 .num0 {
+    cursor: pointer;
     background-image: url(images/num0.jpg);
     background-size: cover;
 }
 
 .num1 {
+    cursor: pointer;
     background-image: url(images/num1.jpg);
     background-size: cover;
 }
 
 .num2 {
+    cursor: pointer;
     background-image: url(images/num2.jpg);
     background-size:cover;
 }
 
 .num3 {
+    cursor: pointer;
     background-image: url(images/num3.jpg);
     background-size: cover;
 }
 
 .num4 {
+    cursor: pointer;
     background-image: url(images/num4.jpg);
     background-size: cover;
 }
 
 .num5 {
+    cursor: pointer;
     background-image: url(images/num5.jpg);
     background-size:cover;
 }
 
 .num6 {
+    cursor: pointer;
     background-image: url(images/num6.jpg);
     background-size: cover;
 }
 
 .num7 {
+    cursor: pointer;
     background-image: url(images/num7.jpg);
     background-size: cover;
 }
 
 .num8 {
+    cursor: pointer;
     background-image: url(images/num8.jpg);
     background-size:cover;
 }
 
 .num9 {
+    cursor: pointer;
     background-image: url(images/num9.jpg);
     background-size: cover;
 }
 
 .num10 {
+    cursor: pointer;
     background-image: url(images/num10.jpg);
     background-size: cover;
 }
 
 #letsPlay {
+    cursor: pointer;
     margin: auto;
     /* position: absolute; */
     width: 200px;
@@ -156,6 +168,7 @@ h3{
 }
 
 #btn-start{
+    cursor: pointer;
     margin: auto;
     /* position: absolute; */
     width: 100px;
@@ -174,6 +187,7 @@ h3{
 }
 
 #btn-next{
+    cursor: pointer;
     margin: auto;
     /* position: absolute; */
     width: 100px;
@@ -192,6 +206,7 @@ h3{
 }
 
 #btn-restart{
+    cursor: pointer;
     margin: auto;
     /* position: absolute; */
     width: 100px;
