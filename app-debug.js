@@ -7,12 +7,12 @@ const restart = document.getElementById("btn-restart");
 const input1Num = document.getElementById("input1");
 const input2Num = document.getElementById("input2");
 
-let input1;
-let input2;
-let answer;
+let input1 = Math.ceil(Math.random() * 5);
+let input2 = Math.floor(Math.random() * 6);
+let answer = input1 + input2;
 let result = 0;
-let randomWrongNumbers;
-let randomWrongNumbers1;
+let randomWrongNumbers = Math.floor(Math.random() * 10);
+let randomWrongNumbers1 = Math.floor(Math.random() * 10);
 let hitPosition1;
 let hitPosition2;
 let hitPosition3;
@@ -24,6 +24,72 @@ let countDownTimerId = null;
 next.style.display = "none";
 restart.style.display = "none";
 
+console.log('Answer is:' + answer);
+console.log('Wrong random number 1:' + randomWrongNumbers);//so how to check if randomw numbers === answer, rerun randon
+console.log('Wrong random number 2:' + randomWrongNumbers1);
+
+/***********
+ * Refresh input and answer
+ **********/
+const refreshInput = () =>{
+    answer;
+    input1 = Math.ceil(Math.random() * 5);
+    input2 = Math.floor(Math.random() * 6);
+    answer = input1 + input2 
+    randomWrongNumbers = Math.floor(Math.random() * 10);
+    randomWrongNumbers1 = Math.floor(Math.random() * 10);
+    console.log('Refreshed input1:' + input1);
+    console.log('Refreshed input2:' + input2);
+    console.log(`Generate question answer is ${answer}`);// how do i check this with random? 
+    console.log('Rerun Wrong random number 1:' + randomWrongNumbers);
+    console.log('Rerun Wrong random number 2:' + randomWrongNumbers1);
+    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
+        refreshInput();
+    }
+}
+
+/***********
+ * Generate random question
+ **********/
+ const generateQuestion = () =>{
+    refreshInput();
+    checker();
+    // input1 = Math.ceil(Math.random() * 5);
+    input1Num.textContent = input1;
+    // input2 = Math.floor(Math.random() * 6);
+    input2Num.textContent = input2;
+    // answer = input1 + input2 
+    
+    console.log('Refreshed input1 in genQ:' + input1);
+    console.log('Refreshed input2 in genQ:' + input2);
+    console.log(`Generate question answer is ${answer}in genQ`);// how do i check this with random? 
+    console.log('Rerun Wrong random number 1 in genQ:' + randomWrongNumbers);
+    console.log('Rerun Wrong random number 2 in genQ:' + randomWrongNumbers1);
+    // to change back to answer instead of answer1. 
+}
+
+
+/***********
+ * Reset to new set of random numbers
+ **********/
+ const reRun = () =>{
+    randomWrongNumbers = Math.floor(Math.random() * 10);
+    randomWrongNumbers1 = Math.floor(Math.random() * 10);
+    checker();
+    console.log('Rerun Answer is:' + answer); // where did they get this??
+    console.log('Rerun Wrong random number 1:' + randomWrongNumbers);
+    console.log('Rerun Wrong random number 2:' + randomWrongNumbers1);
+}
+
+/***********
+ * Check if answer is same as random wrong numbers(1)
+ **********/
+ const checker = () => {
+    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
+    reRun();
+    }
+}
+// checker();
 
 /***********
  * Sequence of Events
@@ -32,14 +98,15 @@ const seqOfEv = () => {
     generateQuestion();
     hideStart();
     startTimer();
-    moveNum1();
+    moveMole1();
     mouseClick1();
-    moveNum2();
+    moveMole2();
     mouseClick2();
-    moveNum3();
+    moveMole3();
     mouseClick3();
     nextGame();
 }
+
 
 /***********
  * Start button
@@ -59,14 +126,23 @@ startNow();
 const nextGame = () => {
     next.addEventListener('click', () => {
         console.log('next clicked');
+        // refreshInput();
+        // checker();
+        // reRun();
         generateQuestion();
         nextGameBtn()
         startTimer();
-        moveNum1();
-        moveNum2();
-        moveNum3();
+        moveMole1();
+        // mouseClick1();
+        moveMole2();
+        // mouseClick2();
+        moveMole3();
+        // mouseClick3();
+       
     })
 }
+
+
 
 /***********
  * Restart button
@@ -78,29 +154,6 @@ const nextGame = () => {
     })
 }
 
-/***********
- * Generate random question
- **********/
- const generateQuestion = () =>{
-    refreshInput();
-    input1Num.textContent = input1;
-    input2Num.textContent = input2;
-}
-
-/***********
- * Refresh input and answer
- **********/
- const refreshInput = () =>{
-    answer;
-    input1 = Math.ceil(Math.random() * 5);
-    input2 = Math.floor(Math.random() * 6);
-    answer = input1 + input2 
-    randomWrongNumbers = Math.floor(Math.random() * 10);
-    randomWrongNumbers1 = Math.floor(Math.random() * 10);
-    if(answer === randomWrongNumbers || answer === randomWrongNumbers1 || randomWrongNumbers === randomWrongNumbers1){
-        refreshInput();
-    }
-}
 
 /***********
  * Generate random numbers
@@ -118,6 +171,7 @@ const nextGame = () => {
         'num9',
         'num10'
     ];
+
 
 /***********
  * Hide start button
@@ -154,12 +208,14 @@ const nextGameBtn = () => {
   };
 
 /***********
- * Correct number. Once click, alert 'correct!' timer stops, unhide next button
+ * Correct number //once click, alert 'correct!' timer stops, unhide next button
  **********/
 
 const randomSquare1 = () => {
     squares.forEach(square => {
         square.classList.remove(numbersClass[answer]); //clean slate
+        // square.classList.remove(numbersClass[randomWrongNumbers1]);
+        // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
     let randomSquare1 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
@@ -167,13 +223,15 @@ const randomSquare1 = () => {
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers1]);
     randomSquare1.classList.remove(numbersClass[randomWrongNumbers]);
 
-    hitPosition1 = randomSquare1.id; //to assign id to the num that appears
+    hitPosition1 = randomSquare1.id; //to assign id to the mole that appears
 }
 const mouseClick1 = () =>{
 squares.forEach(square => {
     square.addEventListener('mousedown', () => {
         if (square.id == hitPosition1) {
             alert('You are awesome!');
+            // alert('Click Next Level!');
+            console.log('button 1')
             result++;
             score.textContent = result;
             nextGameBtn()
@@ -189,9 +247,11 @@ squares.forEach(square => {
 })
 }
 
-const moveNum1 = () => {  
-    timerId1 = setInterval(randomSquare1, 1300); //move the num randomly at an interval
+const moveMole1 = () => {  //later we add button to start.
+    timerId1 = setInterval(randomSquare1, 1300); //move the mole randomly at an interval
 }
+
+
 
 /***********
  * Second number
@@ -201,10 +261,12 @@ const randomSquare2 = () => {
 
     squares.forEach(square => { //must be specific here, because randomWrong numbers below is diff from here.
         square.classList.remove(numbersClass[randomWrongNumbers]) //clean slate each cycle
+        // square.classList.remove(numbersClass[answer-1]);
+        // square.classList.remove(numbersClass[randomWrongNumbers1]); 
     })
 
     let randomSquare2 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    randomSquare2.classList.add(numbersClass[randomWrongNumbers]); //add class of num to a random square
+    randomSquare2.classList.add(numbersClass[randomWrongNumbers]); //add class of mole to a random square
     randomSquare2.classList.remove(numbersClass[randomWrongNumbers1]);
     randomSquare2.classList.remove(numbersClass[answer]);
 
@@ -216,14 +278,20 @@ const mouseClick2 = () =>{
         square.addEventListener('mousedown', () => {
             if (square.id == hitPosition2) {
                 alert('Oops Try Again!');
+                console.log('button 2')
+                // result++;
+                // score.textContent = result;
             }
         })
     })
     }
 
-const moveNum2 = () => {  
-    timerId2 = setInterval(randomSquare2, 950); //move the num randomly at an interval
+const moveMole2 = () => {  //later we add button to start.
+    timerId2 = setInterval(randomSquare2, 950); //move the mole randomly at an interval
 }
+
+// moveMole2();
+// mouseClick2();
 
 /***********
  * Third number
@@ -232,30 +300,37 @@ const moveNum2 = () => {
  const randomSquare3 = () => {
     squares.forEach(square => {
         square.classList.remove(numbersClass[randomWrongNumbers1]) //clean slate
+        // square.classList.remove(numbersClass[answer-1);
+        // square.classList.remove(numbersClass[randomWrongNumbers]); 
     })
 
     let randomSquare3 = squares[Math.floor(Math.random() * 9)] // randomly choose a square on the grid
-    randomSquare3.classList.add(numbersClass[randomWrongNumbers1]); //add class of num to a random square
+    randomSquare3.classList.add(numbersClass[randomWrongNumbers1]); //add class of mole to a random square
     randomSquare3.classList.remove(numbersClass[randomWrongNumbers]);
     randomSquare3.classList.remove(numbersClass[answer]);
 
     hitPosition3 = randomSquare3.id;
 }
 
-const mouseClick3 = () =>{
+const mouseClick3 = () =>{// should be inside some function
     squares.forEach(square => {
         square.addEventListener('mousedown', () => {
             if (square.id == hitPosition3) {
                 alert('Oops Try Again! Don\'t give up!');
+                console.log('button 3')
+                // result++;
+                // score.textContent = result;
             }
         })
     })
     }
 
-const moveNum3 = () => { 
-    timerId3 = setInterval(randomSquare3, 970); //move the num randomly at an interval
+const moveMole3 = () => {  //later we add button to start.
+    timerId3 = setInterval(randomSquare3, 970); //move the mole randomly at an interval
 }
 
+// moveMole2();
+// mouseClick2();
 
 /***********
  * Clear Grid
@@ -311,9 +386,7 @@ const startTimer = () => {
 }
 
 
-//tomoro
-// to customise a pop up box
-// move next button into box
+
 
 
 
